@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nexus — Revenue Intelligence for Modern GTM Teams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0f14;
+    --ink-soft: #3a3d48;
+    --paper: #f4f1ec;
+    --paper-warm: #ede9e1;
+    --sage: #4a6741;
+    --sage-light: #6b8f62;
+    --acid: #c8f04d;
+    --rust: #d95f2b;
+    --rust-pale: #f5e8e0;
+    --gold: #c9a84c;
+    --border: #d6d0c5;
+    --nav-h: 68px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── ANNOUNCEMENT BANNER ── */
+  .banner {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .banner a {
+    color: var(--acid);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .banner a::after { content: '→'; }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(244, 241, 236, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+  }
+  .nav-inner {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+    margin-right: 48px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--ink);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-mark svg { width: 16px; height: 16px; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+  }
+  .nav-item {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: all 0.18s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-item:hover { background: var(--paper-warm); color: var(--ink); }
+  .nav-item .chevron { font-size: 10px; opacity: 0.6; }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-ghost {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    background: transparent;
+    border: 1.5px solid var(--border);
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-decoration: none;
+  }
+  .btn-ghost:hover { border-color: var(--ink); }
+  .btn-primary {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--paper);
+    background: var(--ink);
+    border: none;
+    padding: 9px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--sage); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 96px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    min-height: calc(100vh - var(--nav-h) - 36px);
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--rust-pale);
+    border: 1px solid #e8c8b8;
+    color: var(--rust);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .eyebrow-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--rust);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .hero-h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 52px;
+    flex-wrap: wrap;
+  }
+  .btn-cta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--acid);
+    border: none;
+    padding: 13px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(200, 240, 77, 0.4);
+  }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200, 240, 77, 0.5); }
+  .btn-demo {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.18s;
+  }
+  .btn-demo:hover { color: var(--ink); }
+
+  .hero-social-proof {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .avatar-stack {
+    display: flex;
+  }
+  .avatar-stack span {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--paper);
+    margin-right: -8px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--paper);
+  }
+  .av1 { background: #6b8f62; }
+  .av2 { background: #d95f2b; }
+  .av3 { background: #c9a84c; }
+  .av4 { background: #4a6741; }
+  .proof-text { font-size: 13px; color: var(--ink-soft); line-height: 1.4; }
+  .proof-text strong { color: var(--ink); font-weight: 600; }
+  .stars { color: #f0b429; letter-spacing: -1px; font-size: 12px; }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    position: relative;
+  }
+  .dashboard-card {
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 80px rgba(13,15,20,0.10), 0 4px 20px rgba(13,15,20,0.06);
+    overflow: hidden;
+    transform: perspective(1000px) rotateY(-4deg) rotateX(2deg);
+    transition: transform 0.4s ease;
+  }
+  .dashboard-card:hover { transform: perspective(1000px) rotateY(-1deg) rotateX(0deg); }
+  .card-header {
+    background: var(--ink);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .d-red { background: #ff5f56; }
+  .d-yellow { background: #ffbd2e; }
+  .d-green { background: #27c93f; }
+  .card-title { color: rgba(244,241,236,0.6); font-size: 12px; margin-left: auto; font-family: 'Space Mono', monospace; }
+
+  .card-body { padding: 24px; }
+  .metric-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .metric-box {
+    background: var(--paper);
+    border-radius: 10px;
+    padding: 14px;
+    border: 1px solid var(--border);
+  }
+  .metric-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); margin-bottom: 6px; }
+  .metric-value { font-family: 'Instrument Serif', serif; font-size: 26px; letter-spacing: -0.02em; color: var(--ink); }
+  .metric-delta { font-size: 11px; font-weight: 600; margin-top: 2px; }
+  .delta-up { color: var(--sage); }
+  .delta-down { color: var(--rust); }
+
+  .chart-area {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .chart-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); margin-bottom: 12px; }
+  .bar-chart { display: flex; align-items: flex-end; gap: 6px; height: 72px; }
+  .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .bar {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    transition: height 0.6s cubic-bezier(.34,1.56,.64,1);
+  }
+  .bar.sage { background: var(--sage-light); }
+  .bar.acid { background: var(--acid); }
+  .bar-month { font-size: 9px; color: var(--ink-soft); font-family: 'Space Mono', monospace; }
+
+  .account-list { display: flex; flex-direction: column; gap: 8px; }
+  .account-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--paper);
+    border: 1px solid var(--border);
+  }
+  .account-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--paper);
+    flex-shrink: 0;
+  }
+  .account-name { font-size: 12px; font-weight: 600; color: var(--ink); flex: 1; }
+  .account-signal {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+  .sig-hot { background: #ffe8e0; color: var(--rust); }
+  .sig-warm { background: #fff5d6; color: #a07010; }
+  .sig-new { background: #e8f4e8; color: var(--sage); }
+
+  /* Float badge */
+  .float-badge {
+    position: absolute;
+    bottom: -18px;
+    left: -28px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 32px rgba(13,15,20,0.12);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+    animation: floatUp 3s ease-in-out infinite;
+  }
+  .float-icon { font-size: 20px; }
+  @keyframes floatUp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* ── LOGOS ── */
+  .logos-section {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 40px;
+    background: var(--paper-warm);
+  }
+  .logos-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .logos-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .logo-list {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .logo-pill {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: #9a9590;
+    letter-spacing: -0.01em;
+    transition: color 0.2s;
+  }
+  .logo-pill:hover { color: var(--ink); }
+
+  /* ── FEATURES GRID ── */
+  .section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sage);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sage);
+    border-radius: 2px;
+  }
+  .section-h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 640px;
+    margin-bottom: 16px;
+  }
+  .section-h2 em { font-style: italic; color: var(--sage); }
+  .section-sub {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 520px;
+    line-height: 1.65;
+    margin-bottom: 60px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .feature-card {
+    background: var(--paper);
+    padding: 36px 32px;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .feature-card:hover { background: #fff; }
+  .feature-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+  }
+  .feature-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .feature-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .feature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sage);
+    text-decoration: none;
+    margin-top: 16px;
+    transition: gap 0.2s;
+  }
+  .feature-link:hover { gap: 8px; }
+
+  /* ── SPLIT SECTION ── */
+  .split {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .split-visual {
+    background: var(--ink);
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .split-visual::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: var(--acid);
+    border-radius: 50%;
+    opacity: 0.12;
+    filter: blur(40px);
+  }
+  .terminal {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #8be47a;
+    line-height: 1.8;
+  }
+  .term-dim { color: rgba(255,255,255,0.3); }
+  .term-white { color: rgba(255,255,255,0.85); }
+  .term-acid { color: var(--acid); }
+  .term-rust { color: #ff8a65; }
+  .term-cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--acid);
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  .signal-list { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .signal-item {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .signal-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .signal-dot.hot { background: var(--acid); box-shadow: 0 0 8px var(--acid); }
+  .signal-dot.warm { background: #ff8a65; }
+  .signal-dot.cool { background: #64b5f6; }
+  .signal-text { font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(255,255,255,0.8); flex: 1; }
+  .signal-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+  .badge-fire { background: rgba(200,240,77,0.15); color: var(--acid); }
+  .badge-warm { background: rgba(255,138,101,0.15); color: #ff8a65; }
+  .badge-new { background: rgba(100,181,246,0.15); color: #64b5f6; }
+
+  /* ── STATS ── */
+  .stats-section {
+    background: var(--ink);
+    padding: 80px 40px;
+    margin: 0;
+  }
+  .stats-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .stats-copy h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    margin-bottom: 16px;
+  }
+  .stats-copy h2 em { font-style: italic; color: var(--acid); }
+  .stats-copy p { color: rgba(244,241,236,0.55); font-size: 15px; line-height: 1.65; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .stat-box {
+    background: rgba(244,241,236,0.04);
+    padding: 36px 28px;
+    border-top: 3px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .stat-box:hover { border-color: var(--acid); }
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 48px;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-num span { color: var(--acid); }
+  .stat-desc { font-size: 13px; color: rgba(244,241,236,0.5); line-height: 1.5; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .testi-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+  .testi-card:hover { box-shadow: 0 12px 48px rgba(13,15,20,0.08); }
+  .testi-quote {
+    font-family: 'Instrument Serif', serif;
+    font-size: 17px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .testi-quote::before { content: '\201C'; color: var(--sage-light); }
+  .testi-author { display: flex; align-items: center; gap: 10px; }
+  .author-av {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: var(--paper);
+  }
+  .author-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .author-role { font-size: 12px; color: var(--ink-soft); }
+  .testi-featured {
+    grid-column: span 2;
+    background: var(--sage);
+    border-color: var(--sage);
+  }
+  .testi-featured .testi-quote { color: var(--paper); font-size: 20px; }
+  .testi-featured .testi-quote::before { color: rgba(244,241,236,0.4); }
+  .testi-featured .author-name { color: var(--paper); }
+  .testi-featured .author-role { color: rgba(244,241,236,0.65); }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: var(--paper-warm);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 100px 40px;
+    text-align: center;
+  }
+  .cta-inner { max-width: 640px; margin: 0 auto; }
+  .cta-section h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .cta-section h2 em { font-style: italic; color: var(--sage); }
+  .cta-section p { font-size: 16px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 36px; }
+  .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 64px 40px 32px;
+  }
+  .footer-inner { max-width: 1280px; margin: 0 auto; }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 40px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 32px;
+  }
+  .footer-col-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .footer-brand .logo { color: var(--paper); font-size: 22px; }
+  .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.65; margin-top: 12px; max-width: 240px; }
+  .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.18s; }
+  .footer-col a:hover { color: var(--paper); }
+  .footer-bottom { display: flex; align-items: center; justify-content: space-between; }
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.3); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.18s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE NAV ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .hamburger span {
+    display: block;
+    height: 1.5px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: calc(var(--nav-h) + 36px);
+    left: 0; right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px 24px;
+    z-index: 99;
+    box-shadow: 0 12px 40px rgba(13,15,20,0.10);
+    flex-direction: column;
+    gap: 4px;
+    transform: translateY(-8px);
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .mobile-menu.open {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .mobile-menu .nav-item {
+    font-size: 16px;
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+  .mobile-menu-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 8px 0;
+  }
+  .mobile-menu .btn-primary,
+  .mobile-menu .btn-ghost {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  /* ── TABLET: 900px–1100px ── */
+  @media (max-width: 1100px) {
+    nav { padding: 0 24px; }
+    .hero { padding: 72px 24px 60px; gap: 48px; }
+    .section { padding: 80px 24px; }
+    .split { padding: 0 24px 80px; gap: 48px; }
+    .stats-section { padding: 64px 24px; }
+    .testimonials { padding: 80px 24px; }
+    .cta-section { padding: 80px 24px; }
+    footer { padding: 48px 24px 28px; }
+    .logos-section { padding: 28px 24px; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .testi-grid { grid-template-columns: repeat(2, 1fr); }
+    .testi-featured { grid-column: span 2; }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    .hero-h1 { font-size: clamp(36px, 4.5vw, 52px); }
+    .dashboard-card { transform: none; }
+    .metric-value { font-size: 22px; }
+    .float-badge { left: -10px; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-col-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* ── MOBILE: below 768px ── */
+  @media (max-width: 768px) {
+    :root { --nav-h: 60px; }
+
+    /* Banner */
+    .banner { font-size: 12px; padding: 8px 16px; gap: 6px; flex-wrap: wrap; text-align: center; justify-content: center; }
+
+    /* Nav */
+    nav { padding: 0 16px; }
+    .nav-links, .nav-actions { display: none; }
+    .logo { margin-right: 0; font-size: 22px; }
+    .hamburger { display: flex; }
+
+    /* Hero */
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 48px 16px 56px;
+      gap: 0;
+      min-height: auto;
+    }
+    .hero-visual { display: none; }
+    .hero-h1 { font-size: clamp(34px, 9vw, 48px); }
+    .hero-sub { font-size: 15px; max-width: 100%; }
+    .hero-ctas { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 36px; }
+    .btn-cta { width: 100%; justify-content: center; font-size: 15px; }
+    .btn-demo { font-size: 14px; }
+    .hero-eyebrow { font-size: 11px; margin-bottom: 20px; }
+
+    /* Logos */
+    .logos-section { padding: 24px 16px; }
+    .logos-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .logo-list { gap: 20px; }
+    .logo-pill { font-size: 12px; }
+
+    /* Features */
+    .section { padding: 60px 16px; }
+    .features-grid { grid-template-columns: 1fr; gap: 2px; }
+    .feature-card { padding: 28px 20px; }
+    .section-h2 { font-size: clamp(28px, 7vw, 40px); }
+    .section-sub { font-size: 14px; margin-bottom: 36px; }
+
+    /* Split */
+    .split {
+      grid-template-columns: 1fr;
+      padding: 0 16px 60px;
+      gap: 36px;
+    }
+    .split-visual { padding: 24px; }
+    .terminal { font-size: 11px; }
+    .signal-text { font-size: 12px; }
+
+    /* Stats */
+    .stats-section { padding: 56px 16px; }
+    .stats-inner { grid-template-columns: 1fr; gap: 36px; }
+    .stats-grid { grid-template-columns: 1fr; gap: 2px; border-radius: 12px; }
+    .stat-box { padding: 24px 20px; }
+    .stat-num { font-size: 40px; }
+    .stats-copy h2 { font-size: 32px; }
+
+    /* Testimonials */
+    .testimonials { padding: 60px 16px; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .testi-featured { grid-column: span 1; }
+    .testi-card { padding: 22px 18px; }
+    .testi-quote { font-size: 15px; }
+    .testi-featured .testi-quote { font-size: 16px; }
+
+    /* CTA */
+    .cta-section { padding: 60px 16px; }
+    .cta-actions { flex-direction: column; align-items: center; }
+    .cta-actions .btn-cta,
+    .cta-actions .btn-ghost { width: 100%; justify-content: center; text-align: center; }
+
+    /* Footer */
+    footer { padding: 40px 16px 24px; }
+    .footer-top { grid-template-columns: 1fr; gap: 28px; }
+    .footer-brand p { max-width: 100%; }
+    .footer-col-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 16px;
+    }
+    .footer-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .footer-links { flex-wrap: wrap; gap: 12px; }
+  }
+
+  /* ── SMALL PHONES: below 400px ── */
+  @media (max-width: 400px) {
+    .hero-h1 { font-size: 30px; }
+    .metric-row { grid-template-columns: 1fr 1fr; }
+    .logo-list { gap: 14px; }
+    .footer-col-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BANNER -->
+<div class="banner">
+  <span>🎉 New: Intent Signals API now in public beta</span>
+  <a href="#">Read the announcement</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="5" stroke="#f4f1ec" stroke-width="1.5"/>
+          <circle cx="8" cy="8" r="2" fill="#f4f1ec"/>
+          <line x1="8" y1="1" x2="8" y2="4" stroke="#f4f1ec" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="8" y1="12" x2="8" y2="15" stroke="#f4f1ec" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="1" y1="8" x2="4" y2="8" stroke="#f4f1ec" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="12" y1="8" x2="15" y2="8" stroke="#f4f1ec" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      Nexus
+    </a>
+    <div class="nav-links">
+      <a class="nav-item" href="#">Products <span class="chevron">▾</span></a>
+      <a class="nav-item" href="#">Solutions <span class="chevron">▾</span></a>
+      <a class="nav-item" href="#">Customers</a>
+      <a class="nav-item" href="#">Resources <span class="chevron">▾</span></a>
+      <a class="nav-item" href="#">Pricing</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#" class="btn-ghost">Sign in</a>
+      <a href="#" class="btn-primary">Get started free →</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a class="nav-item" href="#">Products ▾</a>
+  <a class="nav-item" href="#">Solutions ▾</a>
+  <a class="nav-item" href="#">Customers</a>
+  <a class="nav-item" href="#">Resources ▾</a>
+  <a class="nav-item" href="#">Pricing</a>
+  <div class="mobile-menu-divider"></div>
+  <a href="#" class="btn-ghost" style="display:block;text-align:center;padding:11px 20px">Sign in</a>
+  <a href="#" class="btn-primary" style="display:block;text-align:center;padding:12px 20px;margin-top:8px">Get started free →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Revenue Intelligence Platform
+    </div>
+    <h1 class="hero-h1">
+      Turn every<br>signal into <em>pipeline</em>
+    </h1>
+    <p class="hero-sub">
+      Nexus unifies your intent data, ad performance, and account signals into one command center. Know who's buying, why they're buying, and what to do next.
+    </p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-cta">Start for free →</a>
+      <a href="#" class="btn-demo">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#3a3d48" stroke-width="1.5"/><path d="M6.5 5.5l4 2.5-4 2.5V5.5z" fill="#3a3d48"/></svg>
+        Watch 2-min demo
+      </a>
+    </div>
+    <div class="hero-social-proof">
+      <div class="avatar-stack">
+        <span class="av1">JM</span>
+        <span class="av2">KR</span>
+        <span class="av3">AL</span>
+        <span class="av4">PE</span>
+      </div>
+      <div class="proof-text">
+        <div class="stars">★★★★★</div>
+        <strong>1,400+ revenue teams</strong> already growing with Nexus
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="dashboard-card">
+      <div class="card-header">
+        <span class="dot d-red"></span>
+        <span class="dot d-yellow"></span>
+        <span class="dot d-green"></span>
+        <span class="card-title">nexus / command-center</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric-box">
+            <div class="metric-label">Pipeline Created</div>
+            <div class="metric-value">$4.2M</div>
+            <div class="metric-delta delta-up">↑ 32% MoM</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Hot Accounts</div>
+            <div class="metric-value">148</div>
+            <div class="metric-delta delta-up">↑ 18 new</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Ad ROAS</div>
+            <div class="metric-value">6.4×</div>
+            <div class="metric-delta delta-up">↑ 0.8× QoQ</div>
+          </div>
+        </div>
+        <div class="chart-area">
+          <div class="chart-label">Monthly Pipeline by Source</div>
+          <div class="bar-chart">
+            <div class="bar-wrap"><div class="bar sage" style="height:40px"></div><span class="bar-month">AUG</span></div>
+            <div class="bar-wrap"><div class="bar sage" style="height:52px"></div><span class="bar-month">SEP</span></div>
+            <div class="bar-wrap"><div class="bar sage" style="height:44px"></div><span class="bar-month">OCT</span></div>
+            <div class="bar-wrap"><div class="bar acid" style="height:62px"></div><span class="bar-month">NOV</span></div>
+            <div class="bar-wrap"><div class="bar acid" style="height:58px"></div><span class="bar-month">DEC</span></div>
+            <div class="bar-wrap"><div class="bar acid" style="height:72px"></div><span class="bar-month">JAN</span></div>
+          </div>
+        </div>
+        <div class="account-list">
+          <div class="account-row">
+            <div class="account-icon" style="background:#d95f2b">A</div>
+            <span class="account-name">Acme Technologies</span>
+            <span class="account-signal sig-hot">🔥 Hot</span>
+          </div>
+          <div class="account-row">
+            <div class="account-icon" style="background:#c9a84c">V</div>
+            <span class="account-name">Veritas Capital</span>
+            <span class="account-signal sig-warm">⚡ Warm</span>
+          </div>
+          <div class="account-row">
+            <div class="account-icon" style="background:#4a6741">N</div>
+            <span class="account-name">NovaSphere Inc.</span>
+            <span class="account-signal sig-new">✦ New Signal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="float-badge">
+      <span class="float-icon">📈</span>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#0d0f14">+47% qualified pipeline</div>
+        <div style="font-size:11px;color:#9a9590">vs. previous quarter</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGOS -->
+<div class="logos-section">
+  <div class="logos-inner">
+    <span class="logos-label">Trusted by teams at</span>
+    <div class="logo-list">
+      <span class="logo-pill">Meridian</span>
+      <span class="logo-pill">Vaultworks</span>
+      <span class="logo-pill">Orbital HQ</span>
+      <span class="logo-pill">Syncbridge</span>
+      <span class="logo-pill">Tessera Labs</span>
+      <span class="logo-pill">Halo Systems</span>
+      <span class="logo-pill">Luminary AI</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section fade-up">
+  <div class="section-eyebrow">What Nexus does</div>
+  <h2 class="section-h2">Every GTM tool you need, <em>finally</em> unified</h2>
+  <p class="section-sub">Stop guessing which accounts matter. Stop wasting spend on the wrong audiences. Nexus connects intent, ads, and analytics into one intelligent loop.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#e8f4e8">🔭</div>
+      <div class="feature-name">Account Intelligence</div>
+      <p class="feature-desc">Real-time intent signals from 40+ sources. Know which accounts are in-market before your competitors do.</p>
+      <a href="#" class="feature-link">Explore →</a>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#e8f0fe">⚡</div>
+      <div class="feature-name">Ad Autopilot</div>
+      <p class="feature-desc">AI-powered campaign optimization for LinkedIn and Google. Suppress waste. Amplify what works. Sleep at night.</p>
+      <a href="#" class="feature-link">Explore →</a>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#fff0e8">🎯</div>
+      <div class="feature-name">Sales Intelligence</div>
+      <p class="feature-desc">Give your reps the accounts most likely to close — with full context on why they're hot, right now.</p>
+      <a href="#" class="feature-link">Explore →</a>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#f5f0ff">📊</div>
+      <div class="feature-name">Revenue Attribution</div>
+      <p class="feature-desc">Multi-touch attribution that shows every touchpoint's true contribution. No more "it was brand awareness."</p>
+      <a href="#" class="feature-link">Explore →</a>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#fef9e8">🔗</div>
+      <div class="feature-name">GTM Automation</div>
+      <p class="feature-desc">Automate routing, enrichment, scoring, and outreach triggers across your entire tech stack.</p>
+      <a href="#" class="feature-link">Explore →</a>
+    </div>
+    <div class="feature-card" style="background: linear-gradient(135deg, var(--ink) 0%, #1e2430 100%);">
+      <div class="feature-icon" style="background:rgba(200,240,77,0.15);border-color:rgba(200,240,77,0.2)">🤖</div>
+      <div class="feature-name" style="color:var(--paper)">AI Analyst</div>
+      <p class="feature-desc" style="color:rgba(244,241,236,0.6)">Ask anything about your pipeline in plain English. Get instant analysis, forecasts, and recommendations.</p>
+      <a href="#" class="feature-link" style="color:var(--acid)">Coming soon →</a>
+    </div>
+  </div>
+</div>
+
+<!-- SPLIT SECTION -->
+<div class="split fade-up">
+  <div>
+    <div class="section-eyebrow">Intent Signals</div>
+    <h2 class="section-h2">Know who's <em>actually</em> ready to buy</h2>
+    <p style="font-size:15px;color:var(--ink-soft);line-height:1.65;margin-bottom:28px;">Nexus monitors first-party engagement, third-party intent, job change signals, and technographic shifts — then surfaces the accounts that deserve your attention right now.</p>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px;">
+      <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-soft)">
+        <span style="color:var(--sage);font-size:18px">✓</span> Unified view of web, email & ad engagement
+      </li>
+      <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-soft)">
+        <span style="color:var(--sage);font-size:18px">✓</span> G2, 6sense & bombora signal ingestion
+      </li>
+      <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-soft)">
+        <span style="color:var(--sage);font-size:18px">✓</span> Automated Slack & CRM alerts in real time
+      </li>
+    </ul>
+    <a href="#" class="btn-cta" style="font-size:14px;padding:11px 22px">See it in action →</a>
+  </div>
+  <div class="split-visual">
+    <div class="terminal">
+      <div><span class="term-dim">$</span> <span class="term-white">nexus signals --account "Acme Corp" --live</span></div>
+      <div style="margin-top:12px"><span class="term-dim">→</span> <span class="term-acid">Fetching real-time intent layer...</span></div>
+      <div><span class="term-dim">→</span> <span class="term-white">Cross-referencing 40 signal sources</span></div>
+      <div style="margin-top:8px"><span class="term-dim">✓</span> <span class="term-white">Score:</span> <span style="color:#c8f04d;font-weight:700">94/100</span> <span class="term-dim">// HIGH INTENT</span></div>
+    </div>
+    <div class="signal-list">
+      <div class="signal-item">
+        <div class="signal-dot hot"></div>
+        <span class="signal-text">Visited /pricing 4× in last 48hrs</span>
+        <span class="signal-badge badge-fire">Hot</span>
+      </div>
+      <div class="signal-item">
+        <div class="signal-dot warm"></div>
+        <span class="signal-text">New VP of Marketing hired (LinkedIn)</span>
+        <span class="signal-badge badge-warm">Trigger</span>
+      </div>
+      <div class="signal-item">
+        <div class="signal-dot cool"></div>
+        <span class="signal-text">Attended competitor webinar</span>
+        <span class="signal-badge badge-new">Research</span>
+      </div>
+      <div class="signal-item">
+        <div class="signal-dot hot"></div>
+        <span class="signal-text">G2 category intent spike +340%</span>
+        <span class="signal-badge badge-fire">In-Market</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-inner">
+    <div class="stats-copy">
+      <h2>Results that <em>move</em> the number</h2>
+      <p>Nexus customers consistently outperform peers on pipeline efficiency, ad ROAS, and time-to-close. Here's what the data shows.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-num">3.8<span>×</span></div>
+        <div class="stat-desc">Average improvement in ad ROAS within 60 days</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">41<span>%</span></div>
+        <div class="stat-desc">Reduction in wasted ad spend across channels</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2.1<span>×</span></div>
+        <div class="stat-desc">More pipeline from the same headcount & budget</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials fade-up">
+  <div style="text-align:center;margin-bottom:60px;">
+    <div class="section-eyebrow" style="justify-content:center">What customers say</div>
+    <h2 class="section-h2" style="max-width:100%;text-align:center">Real results from <em>real</em> revenue teams</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card testi-featured">
+      <p class="testi-quote">We were flying blind on attribution for 3 years. Nexus gave us our first honest look at what was actually driving closed-won. We reallocated $400K in budget within the first month.</p>
+      <div class="testi-author">
+        <div class="author-av" style="background:#c8f04d;color:#0d0f14">SL</div>
+        <div>
+          <div class="author-name">Sarah Lin</div>
+          <div class="author-role">VP Marketing · Orbital HQ</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-quote">The account scoring alone is worth it. My reps spend zero time on cold accounts now.</p>
+      <div class="testi-author">
+        <div class="author-av" style="background:#d95f2b">MK</div>
+        <div>
+          <div class="author-name">Marcus Klein</div>
+          <div class="author-role">Head of Sales · Vaultworks</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-quote">LinkedIn ROI went from "we think it's working" to a clean 4.2× in about 90 days.</p>
+      <div class="testi-author">
+        <div class="author-av" style="background:#c9a84c">AP</div>
+        <div>
+          <div class="author-name">Anjali Patel</div>
+          <div class="author-role">Demand Gen Lead · Syncbridge</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-quote">Nexus is the first tool that actually made attribution feel solvable for a 3-person marketing team.</p>
+      <div class="testi-author">
+        <div class="author-av" style="background:#4a6741">DW</div>
+        <div>
+          <div class="author-name">Diego Wu</div>
+          <div class="author-role">Co-founder · Tessera Labs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2>Ready to see your <em>real</em> pipeline?</h2>
+    <p>Join 1,400+ B2B teams using Nexus to find, close, and grow the accounts that matter most.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn-cta" style="font-size:15px">Start for free — no card needed</a>
+      <a href="#" class="btn-ghost">Book a demo</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo" style="margin-right:0">
+          <div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5" stroke="#f4f1ec" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="#f4f1ec"/><line x1="8" y1="1" x2="8" y2="4" stroke="#f4f1ec" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="12" x2="8" y2="15" stroke="#f4f1ec" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="8" x2="4" y2="8" stroke="#f4f1ec" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="8" x2="15" y2="8" stroke="#f4f1ec" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          Nexus
+        </a>
+        <p>Revenue intelligence for modern GTM teams. Know what's working. Double down on it.</p>
+      </div>
+      <div class="footer-col-grid">
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#">Account Intelligence</a></li>
+          <li><a href="#">Ad Autopilot</a></li>
+          <li><a href="#">Sales Intelligence</a></li>
+          <li><a href="#">Attribution</a></li>
+          <li><a href="#">Integrations</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="#">Startups</a></li>
+          <li><a href="#">Scale-ups</a></li>
+          <li><a href="#">Enterprise</a></li>
+          <li><a href="#">Demand Gen</a></li>
+          <li><a href="#">Sales Teams</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Webinars</a></li>
+          <li><a href="#">Guides</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">API Docs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nexus Technologies, Inc. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Security</a>
+        <a href="#">Status</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hamburger menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Animate bars on load
+  setTimeout(() => {
+    document.querySelectorAll('.bar').forEach((bar, i) => {
+      const h = bar.style.height;
+      bar.style.height = '0px';
+      setTimeout(() => bar.style.height = h, 200 + i * 80);
+    });
+  }, 400);
+</script>
+</body>
+</html>
