@@ -937,7 +937,7 @@
     .footer-brand p { max-width: 100%; }
     .footer-col-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px 16px;
     }
     .footer-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
@@ -949,7 +949,7 @@
     .hero-h1 { font-size: 30px; }
     .metric-row { grid-template-columns: 1fr 1fr; }
     .logo-list { gap: 14px; }
-    .footer-col-grid { grid-template-columns: 1fr; }
+    .footer-col-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 </style>
 </head>
